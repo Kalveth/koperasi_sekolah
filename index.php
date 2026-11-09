@@ -23,6 +23,7 @@
             <th>stok</th>
             <th>tanggal</th>
             <th>deskripsi</th>
+            <th>Edit</th>
         </tr>
         <?php
         while($name = mysqli_fetch_assoc($takeaway)) {?>
@@ -41,6 +42,9 @@
                     echo "Null";
                 }?>
                 <?php echo $name['description']?>
+            </td>
+            <td>
+                <a href="indexEdit.php?idEdit=<?php echo $name['product_id']?>">Here</a>
             </td>
         </tr>
         <?php } ?>

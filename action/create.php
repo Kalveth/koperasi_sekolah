@@ -13,7 +13,8 @@ if(isset($_POST['btnSimpan'])) {
     $sql = "INSERT INTO products(product_code, product_name, category, unit, price, stock, entry_date, description) VALUES ('$codeInput', '$nameInput', '$categorySelect', '$unitSelect', '$priceInput', '$stockInput', '$dateInput', '$description')";
     
     if(mysqli_query($koneksi, $sql)) {
-        echo "Data tersimpan";
+        header("Location: ../index.php");
+        exit();
     } else {
         echo "Data gagal tersimpan: " . mysqli_error($koneksi);
     }
