@@ -24,6 +24,7 @@
             <th>tanggal</th>
             <th>deskripsi</th>
             <th>Edit</th>
+            <th>Hapus</th>
         </tr>
         <?php
         while($name = mysqli_fetch_assoc($takeaway)) {?>
@@ -46,25 +47,28 @@
             <td>
                 <a href="indexEdit.php?idEdit=<?php echo $name['product_id']?>">Here</a>
             </td>
+            <td>
+                <a href="action/delete.php?idDelete=<?php echo $name['product_id']?>" onclick="return confirm('Yakin?')">Here</a>
+            </td>
         </tr>
         <?php } ?>
     </table>
 
     <form action="action/create.php" method="POST">
         <label>Masukkan kode</label>
-        <input type="text" name="product_code" required>
+        <input type="text" name="product_code">
         <br><br>
 
         <label>Masukkan nama</label>
-        <input type="text" name="product_name" required>
+        <input type="text" name="product_name">
         <br><br>
 
         <label>Pilih kategori</label>
         <select name="category" id="category">
             <option value="food">Food</option>
             <option value="drink">Drink</option>
-            <option value="Stationery">Stationery</option>
-            <option value="Uniform">Uniform</option>
+            <option value="stationery">Stationery</option>
+            <option value="uniform">Uniform</option>
         </select>
         <br><br>
 
@@ -84,22 +88,22 @@
         <br><br>
 
         <label>Masukkan harga</label>
-        <input type="number" name="price" required>
+        <input type="number" name="price">
         <br><br>
 
         <label>Masukkan stock</label>
-        <input type="number" name="stock" required>
+        <input type="number" name="stock">
         <br><br>
 
         <label>Masukkan tanggal</label>
-        <input type="date" name="entry_date" required>
+        <input type="date" name="entry_date">
         <br><br>
 
         <label>Deskripsi</label>
         <textarea name="description" id="description"></textarea>
         <br><br>
 
-        <button type="submit" name="btnSimpan">Simpan</button>
+        <button type="submit" name="btnCreate">Simpan</button>
     </form>
 </body>
 </html>
