@@ -15,6 +15,12 @@ function isCategoryNameTaken($koneksi, $name, $ignoreId = 0) {
     return mysqli_num_rows($query) > 0;
 }
 
+function isProductCodeTaken($koneksi, $code, $ignoreId = 0) {
+    $sql = "SELECT * FROM products WHERE product_code = '$code' AND product_id != '$ignoreId'";
+    $query = mysqli_query($koneksi, $sql);
+    return mysqli_num_rows($query) > 0;
+}
+
 function validateCategory($koneksi, $request, $ignoreId = 0)
 {
     $errors = []; 
@@ -31,6 +37,22 @@ function validateCategory($koneksi, $request, $ignoreId = 0)
         $errors['description'] = "Deskripsi maksimal 200 karakter";
     }
 
+    if (isProductCodeTaken($koneksi, $request['code'], $ignoreId)) {
+        $errors['code'] = "Kode produk sudah dipakai";
+    }
+
+    if ($request['unit'] < 0) {
+        $errors['unit'] = "Harga tidak boleh negatif";
+    }
+
+    if ($request['price'] < 0) {
+        $errors['price'] = "Harga tidak boleh negatif";
+    }
+
+    if ($request['stock'] < 0) {
+        $errors['stock'] = "Stok tidak boleh negatif";
+    }
+    
     return $errors;
 }
 ?>

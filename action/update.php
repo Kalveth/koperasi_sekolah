@@ -15,8 +15,10 @@ if(isset($_POST['btnUbah'])) {
 
     
     $requestData = [
-        'name'        => $nameInput,
-        'description' => $description
+        'name'          => $nameInput,
+        'description'   => $description,
+        'price'         => $priceInput,
+        'stock'         => $stockInput
     ];
 
     $errors = validateCategory($koneksi, $requestData, $productId);

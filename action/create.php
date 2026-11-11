@@ -14,8 +14,10 @@ if(isset($_POST['btnCreate'])) {
     $description = $_POST['description'];
 
     $requestData = [
-        'name' => $nameInput,
-        'description' => $description
+        'name'          => $nameInput,
+        'description'   => $description,
+        'price'         => $priceInput,
+        'stock'         => $stockInput
     ];
 
     $errors = validateCategory($koneksi, $requestData);
