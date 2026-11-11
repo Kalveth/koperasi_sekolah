@@ -6,6 +6,11 @@
     <title>koperasi_sekolah</title>
 </head>
 <body>
+    <?php if (isset($_GET['pesan'])) { ?>
+    <p style="color: <?php echo (($_GET['status'] ?? '') === 'error') ? 'red' : 'green'; ?>;">
+        <?php echo htmlspecialchars($_GET['pesan']); ?>
+    </p>
+    <?php } ?>
     <?php
     include 'config/database.php';
     $id = $_GET['idEdit'];

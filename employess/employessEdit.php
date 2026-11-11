@@ -6,10 +6,15 @@
     <title>koperasi_sekolah</title>
 </head>
 <body>
+    <?php if (isset($_GET['pesan'])) { ?>
+    <p style="color: <?php echo (($_GET['status'] ?? '') === 'error') ? 'red' : 'green'; ?>;">
+        <?php echo htmlspecialchars($_GET['pesan']); ?>
+    </p>
+    <?php } ?>
     <?php
     include '../config/database.php';
     $id = $_GET['idEditEmployess'];
-    $sql = "SELECT * FROM employees";
+    $sql = "SELECT * FROM employees WHERE employee_id = '$id'";
     $takeaway = mysqli_query($koneksi, $sql);
     $oldData = mysqli_fetch_assoc($takeaway);
     ?>
@@ -27,9 +32,9 @@
 
         <label>Pilih Gender</label><br>
         <input type="radio" name="gender" value="M" id="laki" <?php if($oldData['gender'] == 'M') echo 'checked'; ?>> 
-        <label for="l">Laki-laki</label>
+        <label for="M">Laki-laki</label>
         <input type="radio" name="gender" value="F" id="perempuan" <?php if($oldData['gender'] == 'F') echo 'checked'; ?>> 
-        <label for="p">Perempuan</label>
+        <label for="F">Perempuan</label>
         <br><br>
 
         <label>Masukkan Tanggal Ulang Tahun</label>
@@ -53,5 +58,6 @@
         <br><br>
 
         <button type="submit" name="btnUpdateEmployess">Ubah</button>
+    </form> 
 </body>
 </html>

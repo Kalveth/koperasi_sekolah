@@ -7,6 +7,11 @@
 </head>
 <body>
 <h1>Products</h1>
+    <?php if (isset($_GET['pesan'])) { ?>
+    <p style="color: <?php echo (($_GET['status'] ?? '') === 'error') ? 'red' : 'green'; ?>;">
+        <?php echo htmlspecialchars($_GET['pesan']); ?>
+    </p>
+    <?php } ?>
     <?php
     include 'config/database.php';
     $sql = "SELECT * FROM products";

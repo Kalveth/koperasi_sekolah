@@ -1,9 +1,5 @@
 <?php
 
-require_once __DIR__ . "../config/database.php";
-require_once __DIR__ . "../validation.php";
-
-
 function getCategoryRequest($request) 
 {
     return [
